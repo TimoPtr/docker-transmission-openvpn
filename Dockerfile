@@ -11,7 +11,10 @@ VOLUME /config
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install sudo software-properties-common ufw \
-    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev \
+	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC
+	&& echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
+	&& apt-get update \
+    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev nzbdrone \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
     && rm -rf dumb-init_*.deb \
@@ -44,7 +47,7 @@ ENV OPENVPN_USERNAME=**None** \
     "TRANSMISSION_BLOCKLIST_URL=http://www.example.com/blocklist" \
     "TRANSMISSION_CACHE_SIZE_MB=4" \
     "TRANSMISSION_DHT_ENABLED=true" \
-    "TRANSMISSION_DOWNLOAD_DIR=/data/completed" \
+    "TRANSMISSION_DOWNLOAD_DIR=/data" \
     "TRANSMISSION_DOWNLOAD_LIMIT=100" \
     "TRANSMISSION_DOWNLOAD_LIMIT_ENABLED=0" \
     "TRANSMISSION_DOWNLOAD_QUEUE_ENABLED=true" \
