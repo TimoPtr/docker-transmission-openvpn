@@ -11,7 +11,7 @@ VOLUME /config
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install software-properties-common ufw \
-    && apt-get install -y openvpn curl rar unrar zip unzip wget libevent-dev libminiupnpc-dev \
+    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
     && rm -rf dumb-init_*.deb \
