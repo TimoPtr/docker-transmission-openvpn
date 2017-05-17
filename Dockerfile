@@ -112,7 +112,6 @@ ENV OPENVPN_USERNAME=**None** \
     PGID=
 
 # Expose port and run
-EXPOSE 9091
 EXPOSE 9091 #Transmission 
 EXPOSE 8989 #Sonarr 
 EXPOSE 5050 #Couchpotato 
