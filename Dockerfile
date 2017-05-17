@@ -112,7 +112,10 @@ ENV OPENVPN_USERNAME=**None** \
     PGID=
 
 # Expose port and run
-EXPOSE 9091 #Transmission 
-EXPOSE 8989 #Sonarr 
-EXPOSE 5050 #Couchpotato 
+#Transmission 
+EXPOSE 9091
+#Sonarr
+EXPOSE 8989
+#Couchpotato
+EXPOSE 5050
 CMD ["dumb-init", "/etc/openvpn/start.sh"]
