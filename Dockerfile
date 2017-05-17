@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC \
     && echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
     && apt-get update \
-    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev nzbdrone \
+    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev libmono-cil-dev nzbdrone \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
     && rm -rf dumb-init_*.deb \
