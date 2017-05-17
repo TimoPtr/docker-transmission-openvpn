@@ -2,7 +2,7 @@
 #
 # Version 1.15
 
-FROM debian:14.04
+FROM debian:jessie
 MAINTAINER Kristian Haugene
 
 VOLUME /data
