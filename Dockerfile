@@ -11,7 +11,7 @@ VOLUME /config
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install sudo software-properties-common ufw \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC \
     && echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
     && apt-get update \
     && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev nzbdrone \
