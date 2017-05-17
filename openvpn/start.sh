@@ -27,8 +27,7 @@ fi
 
 # add OpenVPN user/pass
 if [ "${OPENVPN_USERNAME}" = "**None**" ] || [ "${OPENVPN_PASSWORD}" = "**None**" ] ; then
- echo "OpenVPN credentials not set. Exiting."
- exit 1
+ echo "OpenVPN credentials not set."
 else
   echo "Setting OPENVPN credentials..."
   mkdir -p /config
@@ -78,4 +77,9 @@ if [ -n "${LOCAL_NETWORK-}" ]; then
   fi
 fi
 
-exec openvpn $TRANSMISSION_CONTROL_OPTS $OPENVPN_OPTS --config "$OPENVPN_CONFIG"
+
+if [ "${OPENVPN_USERNAME}" = "**None**" ] || [ "${OPENVPN_PASSWORD}" = "**None**" ] ; then
+	. /etc/transmission/start.sh
+else
+	exec openvpn $TRANSMISSION_CONTROL_OPTS $OPENVPN_OPTS --config "$OPENVPN_CONFIG"
+fi

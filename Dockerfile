@@ -2,7 +2,7 @@
 #
 # Version 1.15
 
-FROM ubuntu:14.04
+FROM debian:14.04
 MAINTAINER Kristian Haugene
 
 VOLUME /data
@@ -11,8 +11,6 @@ VOLUME /config
 # Update packages and install software
 RUN apt-get update \
     && apt-get -y install software-properties-common ufw \
-    && add-apt-repository multiverse \
-    && apt-get update \
     && apt-get install -y openvpn curl rar unrar zip unzip wget libevent-dev libminiupnpc-dev \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
