@@ -35,3 +35,4 @@ else
 fi
 
 echo "Transmission startup script complete."
+tail -f /dev/null
