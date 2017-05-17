@@ -10,9 +10,11 @@ VOLUME /config
 
 # Update packages and install software
 RUN apt-get update \
-    && apt-get -y install sudo software-properties-common ufw \
+    && apt-get -y install sudo software-properties-common ufw libmono-cil-dev \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC \
-    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev libmono-cil-dev nzbdrone \
+    && echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
+    && apt-get update \
+    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev nzbdrone \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
     && rm -rf dumb-init_*.deb \
