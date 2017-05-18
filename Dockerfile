@@ -10,7 +10,10 @@ VOLUME /config
 
 # Update packages and install software
 RUN apt-get update \
-    && apt-get -y install sudo software-properties-common ufw libmono-cil-dev \
+    && apt-get install -y python-pip libxml2-dev libxslt-dev python-dev \
+    && pip install lxml \
+    && pip install --upgrade pyopenssl \
+    && apt-get -y install sudo software-properties-common ufw libmono-cil-dev git python\
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC \
     && echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
     && apt-get update \
