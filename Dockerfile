@@ -1,23 +1,14 @@
 # Transmission and OpenVPN
-#
-# Version 1.15
+# fork from https://hub.docker.com/r/haugene/transmission-openvpn/
+# Version 1.16
 
 FROM debian:jessie
-MAINTAINER Kristian Haugene
-
-VOLUME /data
-VOLUME /config
+MAINTAINER Timothy Nibeaudeau
 
 # Update packages and install software
 RUN apt-get update \
-    && apt-get install -y python-pip libxml2-dev libxslt-dev python-dev \
-    && pip install lxml \
-    && pip install --upgrade pyopenssl \
-    && apt-get -y install sudo software-properties-common ufw libmono-cil-dev git python\
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC \
-    && echo "deb http://apt.sonarr.tv/ master main" > /etc/apt/sources.list.d/sonarr.list \
-    && apt-get update \
-    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev nzbdrone \
+    && apt-get -y install sudo software-properties-common ufw \
+    && apt-get install -y openvpn curl wget libevent-dev libminiupnpc-dev \
     && curl -sLO https://github.com/Yelp/dumb-init/releases/download/v1.0.1/dumb-init_1.0.1_amd64.deb \
     && dpkg -i dumb-init_*.deb \
     && rm -rf dumb-init_*.deb \
@@ -118,8 +109,10 @@ ENV OPENVPN_USERNAME=**None** \
 # Expose port and run
 #Transmission 
 EXPOSE 9091
-#Sonarr
-EXPOSE 8989
-#Couchpotato
-EXPOSE 5050
+
+# Where torrents are download
+VOLUME /data
+# Where transmission and openVPN conf/credential are stored
+VOLUME /config
+
 CMD ["dumb-init", "/etc/openvpn/start.sh"]
