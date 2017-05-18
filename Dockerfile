@@ -108,7 +108,7 @@ ENV OPENVPN_USERNAME=**None** \
 
 # Expose port and run
 #Transmission 
-EXPOSE 9091
+EXPOSE 9091 51413
 
 # Where torrents are download
 VOLUME /data
