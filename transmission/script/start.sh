@@ -13,7 +13,7 @@ fi
 echo "Generating transmission settings.json from env variables"
 # Ensure TRANSMISSION_HOME is created
 mkdir -p ${TRANSMISSION_HOME}
-dockerize -template /etc/transmission/settings.tmpl:${TRANSMISSION_HOME}/settings.json /bin/true
+dockerize -template /etc/transmission/settings.tmpl:/config/settings.json /bin/true
 
 if [ ! -e "/dev/random" ]; then
   # Avoid "Fatal: no entropy gathering module detected" error
@@ -24,7 +24,7 @@ fi
 . /etc/transmission/userSetup.sh
 
 echo "STARTING TRANSMISSION"
-exec sudo -u ${RUN_AS} transmission-daemon -g ${TRANSMISSION_HOME} --logfile ${TRANSMISSION_HOME}/transmission.log &
+exec sudo -u ${RUN_AS} transmission-daemon -g /config --logfile /config/transmission.log &
 
 if [ "$OPENVPN_PROVIDER" = "PIA" ]
 then
