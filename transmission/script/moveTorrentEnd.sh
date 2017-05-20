@@ -14,12 +14,15 @@ cd $TR_TORRENT_DIR
 
 if [[ $TR_TORRENT_DIR == *movie ]]
 then
-	$out_dir="$movie_final_dir"
+	out_dir="$movie_final_dir"
 elif [[ $TR_TORRENT_DIR == *serie ]]
 then
-	$out_dir="$serie_final_dir"
+	out_dir="$serie_final_dir"
 fi
 
 echo "$out_dir/"$TR_TORRENT_NAME".tar"
  
 tar -cvf "$out_dir/$TR_TORRENT_NAME.tar" $TR_TORRENT_NAME 
+
+#clear cache after tar
+sync && echo 3 | sudo tee /proc/sys/vm/drop_caches
