@@ -114,5 +114,7 @@ EXPOSE 9091 51413
 VOLUME /data
 # Where transmission and openVPN conf/credential are stored
 VOLUME /config
+# Cache folder where to build cache
+VOLUME /cache
 
 CMD ["dumb-init", "/etc/openvpn/start.sh"]
