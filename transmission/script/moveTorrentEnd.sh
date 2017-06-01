@@ -14,6 +14,7 @@ serie_cache_dir="/cache/serie"
 function createFinal {
 	final_dir=$1
 	touch "${final_dir}/${TR_TORRENT_NAME}"
+	echo "MOVE_TORRENT : dir = $TR_TORRENT_DIR       torrent = ${TR_TORRENT_NAME} create final in ${final_dir}" >> /config/transmission.log
 }
 
 function createCache {
@@ -33,20 +34,19 @@ function createCache {
 		#echo "${file#${TR_TORRENT_DIR}/}"
 		#echo "${cache_dir}/${file#${TR_TORRENT_DIR}/}" 				
 		touch "${cache_dir}/${file#${TR_TORRENT_DIR}/}"
-	done
+	done	
+	echo "MOVE_TORRENT : dir = $TR_TORRENT_DIR       torrent = ${TR_TORRENT_NAME} create cache in ${cache_dir}" >> /config/transmission.log
 }
 
 
-if [[ $TR_TORRENT_DIR == *movie ]]
+if [[ $TR_TORRENT_DIR == *movie* ]]
 then
 	createFinal ${movie_final_dir}
 	creatteCache ${movie_cache_dir}
-elif [[ $TR_TORRENT_DIR == *serie ]]
+elif [[ $TR_TORRENT_DIR == *serie* ]]
 then
 	createFinal ${movie_final_dir}
 	creatteCache ${movie_cache_dir}
 else
 	createFinal ${other_final_dir}
 fi
-
-echo "${TR_TORRENT_NAME} cache create and final"
