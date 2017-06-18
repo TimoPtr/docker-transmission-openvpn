@@ -45,8 +45,8 @@ then
 	creatteCache ${movie_cache_dir}
 elif [[ $TR_TORRENT_DIR == *serie* ]]
 then
-	createFinal ${movie_final_dir}
-	creatteCache ${movie_cache_dir}
+	createFinal ${serie_final_dir}
+	creatteCache ${serie_cache_dir}
 else
 	createFinal ${other_final_dir}
 fi
