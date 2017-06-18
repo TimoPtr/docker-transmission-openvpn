@@ -1,9 +1,10 @@
 #!/bin/bash
-# When a movie/serie/other are done downloading this script is trigger to create cache if its movie or serie (usefull for sonarr/couch) and create a file in final directory which will trigger the upload of the torrent on the cloud
+# When a movie/serie/music/other are done downloading this script is trigger to create cache if its movie or serie (usefull for sonarr/couch) and create a file in final directory which will trigger the upload of the torrent on the cloud
 
 # final dir 
 movie_final_dir="/data/final/movie"
 serie_final_dir="/data/final/serie"
+music_final_dir="/data/final/music"
 other_final_dir="/data/final/other"
 
 # cache dir
@@ -47,6 +48,9 @@ elif [[ $TR_TORRENT_DIR == *serie* ]]
 then
 	createFinal ${serie_final_dir}
 	creatteCache ${serie_cache_dir}
+elif [[ $TR_TORRENT_DIR == *music* ]]
+then
+	createFinal ${music_final_dir}
 else
 	createFinal ${other_final_dir}
 fi
